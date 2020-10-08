@@ -1,2 +1,2 @@
 # recipe-app
-Created using React
+Simple recipe application using React
