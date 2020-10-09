@@ -8,13 +8,19 @@ const App = () => {
 
   const APP_ID = "a79d8426";
   const APP_KEY = "bb8e9ddaefa3eedd238a71a97ffca727";
-  const exampleReq = `https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`;
-  
-  const [counter,setCounter] = useState(0);
+  // Usually APP ID and APP KEY are hidden
 
   useEffect(() =>{
-    console.log('Effect has been run');
-  });
+    getRecipes();
+  },[]);
+
+  const getRecipes = async() => {
+    const response = await fetch(`https://api.edamam.com/search?q=chicken&app_id=${APP_ID}&app_key=${APP_KEY}`);
+    const data = await response.json();
+    console.log(data);
+  }
+// The get request above could have been written traditionally but this way was 
+// a bit easier to read
 
   return(
     <div className="App">
@@ -24,9 +30,6 @@ const App = () => {
           Search
         </button>
       </form>
-
-      <h1 onClick={() => setCounter(counter + 1)}>{counter}</h1>
-
     </div>
   );
 }
